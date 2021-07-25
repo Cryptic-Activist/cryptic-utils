@@ -21,8 +21,7 @@
     "dev": "nodemon src/index.ts",
     "build": "tsc",
     "refresh": "rm -rf ./node_modules ./yarn.lock ./yarn-error.log && yarn install",
-    "migrate": "yarn sequelize db:migrate",
-    "publish": "npm version patch --force && npm publish"
+    "migrate": "yarn sequelize db:migrate"
   },
   "husky": {
     "hooks": {}
