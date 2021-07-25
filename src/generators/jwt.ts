@@ -16,6 +16,6 @@ export async function decodeToken(token: string): Promise<any> {
 
     return decoded;
   } catch (err) {
-    return {};
+    return { error: err.message };
   }
 }
