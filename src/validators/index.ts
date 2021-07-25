@@ -25,3 +25,7 @@ export function validate(bodyRequest: object, expectedRequest: object): string[]
 
   return errors;
 }
+
+export function compareSame(toCompare, compared): boolean {
+  return toCompare === compared;
+}
