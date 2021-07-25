@@ -8,9 +8,9 @@ export function sanitize(unsanitized: object | string) {
   }
   if (Array.isArray(unsanitized)) {
     cleanObj = unsanitized.map((item) => sanitizeHtml(item, { allowedTags: [] }).trim());
-  } 
+  }
   if (typeof unsanitized === 'object' && unsanitized !== null && !Array.isArray(unsanitized)) {
-    cleanObj = {}
+    cleanObj = {};
     Object.keys(unsanitized).forEach((prop) => {
       cleanObj[prop] = sanitizeHtml(unsanitized[prop], {
         allowedTags: [],

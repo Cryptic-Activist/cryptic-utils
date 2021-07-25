@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 export async function fetcher(
   endpoint: string,
   method: 'GET' | 'POST' | 'PUT' | 'DELETE',
-  body?: object
+  body?: object,
 ): Promise<any> {
   const response = await fetch(
     endpoint,
@@ -27,7 +27,7 @@ export async function fetcherAuth(
   endpoint: string,
   method: 'GET' | 'POST' | 'PUT' | 'DELETE',
   authorization: string,
-  body?: object
+  body?: object,
 ): Promise<any> {
   const response = await fetch(
     endpoint,
@@ -38,7 +38,7 @@ export async function fetcherAuth(
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: authorization
+        Authorization: authorization,
       },
       body,
     },

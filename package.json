@@ -1,6 +1,6 @@
 {
   "name": "cryptic-utils",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Utils for Cryptic Activist APIs",
   "author": "Davi Silva <davi.cunha.silva.ca@gmail.com>",
   "source": "src/index.ts",
@@ -37,6 +37,7 @@
     "@babel/node": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
     "@babel/preset-typescript": "^7.12.13",
+    "@types/jsonwebtoken": "^8.5.4",
     "@types/node": "^14.14.22",
     "@types/nodemon": "^1.19.0",
     "@types/sanitize-html": "^2.3.2",
@@ -56,6 +57,7 @@
   },
   "dependencies": {
     "chalk": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
     "node-fetch": "^2.6.1",
     "sanitize-html": "^2.4.0"
   }
