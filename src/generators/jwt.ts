@@ -1,7 +1,10 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
-export function generateToken(objToTokenize: object, expiresIn: string): string {
-  return jwt.sign({ ...objToTokenize }, 'process.env.JWT_SECRET', {
+export function generateToken(
+  objToTokenize: object,
+  expiresIn: string
+): string {
+  return jwt.sign({ ...objToTokenize }, process.env.JWT_SECRET, {
     expiresIn,
   });
 }
@@ -12,7 +15,7 @@ export function generateRefreshToken(objToTokenize: object): string {
 
 export async function decodeToken(token: string): Promise<any> {
   try {
-    const decoded = await jwt.verify(token, 'process.env.JWT_SECRET');
+    const decoded = await jwt.verify(token, process.env.JWT_SECRET);
 
     return decoded;
   } catch (err) {
