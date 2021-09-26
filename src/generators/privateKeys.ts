@@ -1,6 +1,6 @@
-import CrypticBase from 'cryptic-base';
-import bcrypt from 'bcryptjs';
-import { generateRandomAdjective } from './string';
+import { getUser } from "cryptic-base";
+import bcrypt from "bcryptjs";
+import { generateRandomAdjective } from "./string";
 
 export async function encryptPrivateKey(key: string): Promise<string> {
   const genSalt = await bcrypt.genSalt(10);
@@ -18,8 +18,6 @@ export async function generatePrivateKeys(): Promise<{
   let privateKeysArr: null | string[];
   let userObj: any;
 
-  const crypticbase = new CrypticBase(false);
-
   do {
     privateKeysArr = [];
     encryptedPrivateKeysArr = [];
@@ -28,17 +26,14 @@ export async function generatePrivateKeys(): Promise<{
       const generatedRandomAdjective: string = generateRandomAdjective();
 
       const encrypted: string = await encryptPrivateKey(
-        generatedRandomAdjective,
+        generatedRandomAdjective
       );
 
       privateKeysArr.push(generatedRandomAdjective);
       encryptedPrivateKeysArr.push(encrypted);
     }
 
-    userObj = await crypticbase.getUser(
-      { private_keys: encryptedPrivateKeysArr },
-      [],
-    );
+    userObj = await getUser({ private_keys: encryptedPrivateKeysArr }, []);
   } while (userObj);
 
   return {
