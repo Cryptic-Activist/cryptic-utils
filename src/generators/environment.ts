@@ -5,6 +5,7 @@ import crypto from "crypto";
 export const setupEnvironment = () => {
   const envMain = [];
   const envMainPort = [];
+  let userApi = null;
 
   const rootRepoFolder = path
     .dirname(__dirname)
@@ -21,16 +22,30 @@ export const setupEnvironment = () => {
 
   let port = 5000;
 
+  let userApiIndex = null;
+
+  repos.forEach((repo, index) => {
+    if (repo.toLowerCase().includes("user")) {
+      userApiIndex = index;
+    }
+  });
+
   repos.forEach((repo, index) => {
     if (index < repos.length - 1) {
       const appName = `${repo.split("-")[1][0].toUpperCase()}${repo
         .split("-")[1]
         .substring(1, repo.split("-")[1].length)}`;
+
       const appSessionhaSecret = crypto.randomBytes(32).toString("hex");
       const jwtSecret1 = crypto.randomBytes(32).toString("hex");
       const jwtSecret2 = crypto.randomBytes(32).toString("hex");
+
       envMain.push(`${appName.toUpperCase()}_API_ENDPOINT`);
       envMainPort.push(port);
+
+      if (appName.toLowerCase() === "user") {
+        userApi = port;
+      }
 
       const fileContent = `NODE_ENV=development
 
@@ -48,7 +63,7 @@ SEQUELIZE_HOST=localhost
 JWT_SECRET=${jwtSecret1}
 JWT_REFRESH_SECRET=${jwtSecret2}
 
-USER_API_ENDPOINT=http://localhost:5000
+USER_API_ENDPOINT=http://localhost:500${userApiIndex}
 
 PORT=${port}`;
 
