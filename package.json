@@ -59,7 +59,7 @@
     "@types/bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "chalk": "^4.1.1",
-    "cryptic-base": "^1.9.0",
+    "cryptic-base": "^1.9.2",
     "global": "^4.4.0",
     "jsonwebtoken": "^8.5.1",
     "node-fetch": "^2.6.1",
