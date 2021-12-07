@@ -1,5 +1,6 @@
 import { getUser } from "cryptic-base";
 import bcrypt from "bcryptjs";
+import { generateMnemonic } from "bip39";
 import { generateRandomAdjective } from "./string";
 
 export async function encryptPrivateKey(key: string): Promise<string> {
@@ -41,3 +42,17 @@ export async function generatePrivateKeys(): Promise<{
     encryptedPrivateKeys: encryptedPrivateKeysArr,
   };
 }
+
+export const generatePrivateKeysBip39 = async () => {
+  const mnemonicArr: string[] = generateMnemonic().split(" ");
+  const encryptedArrPromise = mnemonicArr.map(
+    async (mnemonic) => await encryptPrivateKey(mnemonic)
+  );
+
+  const promised = await Promise.all(encryptedArrPromise);
+
+  return {
+    privateKeys: mnemonicArr,
+    encryptedPrivateKeys: promised,
+  };
+};

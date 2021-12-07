@@ -1,6 +1,6 @@
 {
   "name": "cryptic-utils",
-  "version": "1.3.10",
+  "version": "1.4.0",
   "description": "Utils for Cryptic Activist APIs",
   "author": "Davi Silva <davi.cunha.silva.ca@gmail.com>",
   "source": "src/index.ts",
@@ -58,6 +58,7 @@
   "dependencies": {
     "@types/bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
+    "bip39": "^3.0.4",
     "chalk": "^4.1.1",
     "cryptic-base": "^1.9.2",
     "global": "^4.4.0",
