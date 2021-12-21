@@ -1,6 +1,6 @@
 import sanitizeHtml from "sanitize-html";
 
-export function sanitize(unsanitized: object | string, exclude: string[]) {
+export const sanitize = (unsanitized: object | string, exclude: string[]) => {
   let cleanObj: any;
 
   if (unsanitized === undefined) {
@@ -46,4 +46,17 @@ export function sanitize(unsanitized: object | string, exclude: string[]) {
   }
 
   return cleanObj;
-}
+};
+
+export const sanitizeQueryArray = (unsanitized: any) => {
+  try {
+    const stringied = String(unsanitized);
+    if (stringied) {
+      return sanitize(stringied.split(","), []);
+    } else {
+      return [];
+    }
+  } catch (e) {
+    return [];
+  }
+};
