@@ -8,3 +8,7 @@ export const convertWhere = (object: object, exclude: string[]) => {
 
   return whereObj;
 };
+
+export const objectToQuery = (object: object) => {
+  console.log(Object.keys(object));
+};
