@@ -65,7 +65,10 @@ JWT_REFRESH_SECRET=${jwtSecret2}
 
 USER_API_ENDPOINT=http://localhost:500${userApiIndex}
 
-PORT=${port}`;
+PORT=${port}
+
+MONGODB_URI=mongodb+srv://activist:<password>@cryptic-activist-catalo.zwo6a.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+`;
 
       fs.writeFileSync(`${rootRepoFolder}/${repo}/.env`, fileContent);
 
