@@ -3,9 +3,10 @@
   "version": "1.4.0",
   "description": "Utils for Cryptic Activist APIs",
   "author": "Davi Silva <davi.cunha.silva.ca@gmail.com>",
-  "source": "src/index.ts",
-  "main": "./dist/src/index.js",
-  "bin": "./dist/src/index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "keywords": [
     "cryptic-utils",
@@ -15,11 +16,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "types": "./dist/src/index.d.ts",
   "scripts": {
     "test": "cross-env NODE_ENV=development jest",
     "dev": "nodemon src/index.ts",
-    "build": "tsc",
+    "build": "rm -rf dist/ && tsc",
     "refresh": "rm -rf ./node_modules ./yarn.lock ./yarn-error.log && yarn install",
     "migrate": "yarn sequelize db:migrate"
   },

@@ -1,7 +1,7 @@
-import { getUser } from "cryptic-base";
-import bcrypt from "bcryptjs";
-import { generateMnemonic } from "bip39";
-import { generateRandomAdjective } from "./string";
+import { getUser } from 'cryptic-base';
+import bcrypt from 'bcryptjs';
+import { generateMnemonic } from 'bip39';
+import { generateRandomAdjective } from './string';
 
 export async function encryptPrivateKey(key: string): Promise<string> {
   const genSalt = await bcrypt.genSalt(10);
@@ -27,7 +27,7 @@ export async function generatePrivateKeys(): Promise<{
       const generatedRandomAdjective: string = generateRandomAdjective();
 
       const encrypted: string = await encryptPrivateKey(
-        generatedRandomAdjective
+        generatedRandomAdjective,
       );
 
       privateKeysArr.push(generatedRandomAdjective);
@@ -44,10 +44,11 @@ export async function generatePrivateKeys(): Promise<{
 }
 
 export const generatePrivateKeysBip39 = async () => {
-  const mnemonicArr: string[] = generateMnemonic().split(" ");
-  const encryptedArrPromise = mnemonicArr.map(
-    async (mnemonic) => await encryptPrivateKey(mnemonic)
-  );
+  const mnemonicArr: string[] = generateMnemonic().split(' ');
+  const encryptedArrPromise = mnemonicArr.map(async (mnemonic) => {
+    const encrypted = await encryptPrivateKey(mnemonic);
+    return encrypted;
+  });
 
   const promised = await Promise.all(encryptedArrPromise);
 

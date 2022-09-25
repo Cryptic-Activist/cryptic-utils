@@ -16,11 +16,12 @@
     "sourceType": "module"
   },
   "settings": {
-    "import/resolver": {
-      "typescript": {}
-    }
+    "typescript": {}
   },
   "rules": {
+    "no-use-before-define": "off",
+    "no-unused-vars": "warn",
+    "import/no-unresolved": "off",
     "import/extensions": "off",
     "object-curly-newline": "off",
     "consistent-return": "off",

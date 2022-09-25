@@ -1,17 +1,17 @@
 // Emits
-export const JOIN = "join";
-export const ADMIN_MESSAGE = "adminMessage";
-export const MESSAGE = "message";
-export const ROOM_DATA = "roomData";
-export const ALERT_NEW_TRADE_STARTED = "alertNewTradeStarted";
-export const GO_ONLINE = "goOnline";
-export const DISCONNECT = "disconnect";
-export const SEND_SYSTEM_MESSAGE = "sendSystemMessage";
-export const END = "end";
-export const SEND_CHAT_MESSAGE = "sendChatMessage";
+export const JOIN = 'join';
+export const ADMIN_MESSAGE = 'adminMessage';
+export const MESSAGE = 'message';
+export const ROOM_DATA = 'roomData';
+export const ALERT_NEW_TRADE_STARTED = 'alertNewTradeStarted';
+export const GO_ONLINE = 'goOnline';
+export const DISCONNECT = 'disconnect';
+export const SEND_SYSTEM_MESSAGE = 'sendSystemMessage';
+export const END = 'end';
+export const SEND_CHAT_MESSAGE = 'sendChatMessage';
 
 // ROOMS
-export const ONLINE_USERS = "onlineUsers";
+export const ONLINE_USERS = 'onlineUsers';
 
 // PAYLOAD
 export const ALERT_NEW_TRADE_STARTED_PAYLOAD = (user) =>
@@ -23,7 +23,7 @@ export const ADMIN_JOIN_MESSAGE = (trader, vendor) =>
 // OBJECTS
 export const ADMIN_BOT_NAMES = {
   names: {
-    first_name: "Cryptic",
-    last_name: "Bot",
+    first_name: 'Cryptic',
+    last_name: 'Bot',
   },
 };

@@ -1,24 +1,13 @@
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from 'jsonwebtoken';
+import { objToTokenizeType } from '../types';
 
-export function generateToken(
-  objToTokenize: object,
-  expiresIn: string
-): string {
-  return jwt.sign({ ...objToTokenize }, process.env.JWT_SECRET, {
-    expiresIn,
-  });
-}
+export const generateToken = (
+  objToTokenize: objToTokenizeType,
+  expiresIn: string,
+) => jwt.sign({ ...objToTokenize }, 'secret', { expiresIn });
 
-export function generateRefreshToken(objToTokenize: object): string {
-  return jwt.sign({ ...objToTokenize }, process.env.JWT_REFRESH_SECRET);
-}
+export const generateRefreshToken = (objToTokenize: objToTokenizeType) =>
+  jwt.sign({ ...objToTokenize }, 'secret');
 
-export async function decodeToken(token: string): Promise<any> {
-  try {
-    const decoded = await jwt.verify(token, process.env.JWT_SECRET);
-
-    return decoded;
-  } catch (err) {
-    return { error: err.message };
-  }
-}
+export const decodeToken = (token: string): string | JwtPayload =>
+  jwt.verify(token, 'JWT_SECRET');

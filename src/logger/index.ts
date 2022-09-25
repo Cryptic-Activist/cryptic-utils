@@ -1,7 +1,17 @@
 import chalk from 'chalk';
 
-export const success = (succesLog: string): void => console.log(`[${chalk.green('OK')}] > ${succesLog}`);
+export const success = (succesLog: string): void =>
+  console.log(`[${chalk.green('OK')}] > ${succesLog}`);
 
-export const error = (errorLog: string): void => console.log(`[${chalk.red('ERROR')}] > ${errorLog}`);
+export const error = (err: Error): void => {
+  const errorLog = {
+    name: err.name,
+    message: err.message,
+    stack: err.stack,
+  };
+  console.log('BIG ERRRRRROOOOOOOOORR');
+  console.log(`[${chalk.red('ERROR')}] > ${errorLog}`);
+};
 
-export const warning = (warningLog: string): void => console.log(`[${chalk.hex('#ff9900').italic('WARNING')}] > ${warningLog}`);
+export const warning = (warningLog: string): void =>
+  console.log(`[${chalk.hex('#ff9900').italic('WARNING')}] > ${warningLog}`);

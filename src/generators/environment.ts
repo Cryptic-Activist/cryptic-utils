@@ -1,6 +1,6 @@
-import path from "path";
-import fs from "fs";
-import crypto from "crypto";
+import path from 'path';
+import fs from 'fs';
+import crypto from 'crypto';
 
 export const setupEnvironment = () => {
   const envMain = [];
@@ -11,39 +11,43 @@ export const setupEnvironment = () => {
     .dirname(__dirname)
     .split(path.sep)
     .slice(0, 6)
-    .join("/");
+    .join('/');
 
   const repos = fs
     .readdirSync(rootRepoFolder)
     .filter(
       (file) =>
-        file.includes("api") || file.includes("new-cryptic-activist-catalog")
+        file.includes('api') || file.includes('new-cryptic-activist-catalog'),
     );
 
   let port = 5000;
 
-  let userApiIndex = null;
+  let userApiIndex = 0;
 
   repos.forEach((repo, index) => {
-    if (repo.toLowerCase().includes("user")) {
+    if (repo.toLowerCase().includes('user')) {
       userApiIndex = index;
     }
   });
 
   repos.forEach((repo, index) => {
     if (index < repos.length - 1) {
-      const appName = `${repo.split("-")[1][0].toUpperCase()}${repo
-        .split("-")[1]
-        .substring(1, repo.split("-")[1].length)}`;
+      const appName = `${repo.split('-')[1][0].toUpperCase()}${repo
+        .split('-')[1]
+        .substring(1, repo.split('-')[1].length)}`;
 
-      const appSessionhaSecret = crypto.randomBytes(32).toString("hex");
-      const jwtSecret1 = crypto.randomBytes(32).toString("hex");
-      const jwtSecret2 = crypto.randomBytes(32).toString("hex");
+      const appSessionhaSecret = crypto.randomBytes(32).toString('hex');
+      const jwtSecret1 = crypto.randomBytes(32).toString('hex');
+      const jwtSecret2 = crypto.randomBytes(32).toString('hex');
 
-      envMain.push(`${appName.toUpperCase()}_API_ENDPOINT`);
+      const appNameEnv = [appName.toUpperCase(), '_API_ENDPOINT'].join('');
+      // @ts-ignore
+      envMain.push(appNameEnv);
+      // @ts-ignore
       envMainPort.push(port);
 
-      if (appName.toLowerCase() === "user") {
+      if (appName.toLowerCase() === 'user') {
+        // @ts-ignore
         userApi = port;
       }
 
@@ -87,11 +91,12 @@ MONGODB_URI=mongodb+srv://activist:<password>@cryptic-activist-catalo.zwo6a.mong
 
       fs.writeFileSync(`${rootRepoFolder}/${repo}/envs.json`, envsContent);
 
+      // eslint-disable-next-line no-plusplus
       port++;
     }
   });
 
-  let envMainContent = "MAIN_DOMAIN=http://localhost:3000\n";
+  let envMainContent = 'MAIN_DOMAIN=http://localhost:3000\n';
 
   envMain.forEach((env, index) => {
     envMainContent += `${env}=http://localhost:${envMainPort[index]}\n`;
@@ -99,6 +104,6 @@ MONGODB_URI=mongodb+srv://activist:<password>@cryptic-activist-catalo.zwo6a.mong
 
   fs.writeFileSync(
     `${rootRepoFolder}/new-cryptic-activist-catalog/.env`,
-    envMainContent.trim()
+    envMainContent.trim(),
   );
 };
