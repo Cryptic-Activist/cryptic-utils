@@ -3,11 +3,16 @@ import { objToTokenizeType } from '../types';
 
 export const generateToken = (
   objToTokenize: objToTokenizeType,
+  secret: string,
   expiresIn: string,
-) => jwt.sign({ ...objToTokenize }, 'secret', { expiresIn });
+) => jwt.sign({ ...objToTokenize }, secret, { expiresIn });
 
-export const generateRefreshToken = (objToTokenize: objToTokenizeType) =>
-  jwt.sign({ ...objToTokenize }, 'secret');
+export const generateRefreshToken = (
+  objToTokenize: objToTokenizeType,
+  secret: string,
+) => jwt.sign({ ...objToTokenize }, secret);
 
-export const decodeToken = (token: string): string | JwtPayload =>
-  jwt.verify(token, 'JWT_SECRET');
+export const decodeToken = (
+  token: string,
+  secret: string,
+): string | JwtPayload => jwt.verify(token, secret);
