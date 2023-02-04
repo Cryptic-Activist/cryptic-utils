@@ -13,11 +13,12 @@ export const setupEnvironment = () => {
     .slice(0, 6)
     .join('/');
 
+
   const repos = fs
     .readdirSync(rootRepoFolder)
     .filter(
       (file) =>
-        file.includes('api') || file.includes('new-cryptic-activist-catalog'),
+        file.includes('api') || file.includes('cryptic-activist-catalog'),
     );
 
   let port = 5000;
@@ -73,8 +74,7 @@ PORT=${port}
 
 MONGODB_URI=mongodb+srv://activist:<password>@cryptic-activist-catalo.zwo6a.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 `;
-
-      fs.writeFileSync(`${rootRepoFolder}/${repo}/.env`, fileContent);
+      fs.writeFileSync(`${rootRepoFolder}/../${repo}/.env`, fileContent);
 
       const envsContent = `[
   "NODE_ENV",
@@ -86,10 +86,10 @@ MONGODB_URI=mongodb+srv://activist:<password>@cryptic-activist-catalo.zwo6a.mong
   "SEQUELIZE_DATABASE",
   "SEQUELIZE_USERNAME",
   "SEQUELIZE_PASSWORD",
-  "SEQUELIZE_HOST"
+  "SEQUELIZE_HOST" 
 ]`;
 
-      fs.writeFileSync(`${rootRepoFolder}/${repo}/envs.json`, envsContent);
+      fs.writeFileSync(`${rootRepoFolder}/../${repo}/envs.json`, envsContent);
 
       // eslint-disable-next-line no-plusplus
       port++;

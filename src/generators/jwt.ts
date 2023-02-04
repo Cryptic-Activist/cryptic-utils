@@ -12,7 +12,5 @@ export const generateRefreshToken = (
   secret: string,
 ) => jwt.sign({ ...objToTokenize }, secret);
 
-export const decodeToken = (
-  token: string,
-  secret: string,
-): string | JwtPayload => jwt.verify(token, secret);
+export const decodeToken = (token: string, secret: string): JwtPayload =>
+  jwt.verify(token, secret) as JwtPayload;

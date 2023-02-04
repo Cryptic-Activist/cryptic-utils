@@ -1,1 +1,1 @@
-export type objToTokenizeType = { userId: string };
+export type objToTokenizeType = object;
