@@ -66,6 +66,7 @@
     "node-fetch": "^2.6.1",
     "sanitize-html": "^2.4.0",
     "slugify": "^1.6.0",
-    "unique-names-generator": "^4.6.0"
+    "unique-names-generator": "^4.6.0",
+    "zod": "^3.20.6"
   }
 }
