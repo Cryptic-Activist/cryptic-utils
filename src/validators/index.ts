@@ -1,7 +1,7 @@
-export function validate(
+export const validate = (
   bodyRequest: object,
   expectedRequest: object,
-): string[] {
+): string[] => {
   const errors: string[] = [];
   Object.keys(bodyRequest).forEach((key, index) => {
     if (key !== Object.keys(expectedRequest)[index]) {
@@ -41,7 +41,7 @@ export function validate(
   });
 
   return errors;
-}
+};
 
 export function compareSame(toCompare, compared): boolean {
   return toCompare === compared;

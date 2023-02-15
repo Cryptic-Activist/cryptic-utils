@@ -1,4 +1,4 @@
-import sanitizeHtml from "sanitize-html";
+import sanitizeHtml from 'sanitize-html';
 
 export const sanitize = (unsanitized: object | string, exclude: string[]) => {
   let cleanObj: any;
@@ -11,16 +11,16 @@ export const sanitize = (unsanitized: object | string, exclude: string[]) => {
     return null;
   }
 
-  if (typeof unsanitized === "string") {
+  if (typeof unsanitized === 'string') {
     cleanObj = sanitizeHtml(unsanitized, { allowedTags: [] }).trim();
   }
   if (Array.isArray(unsanitized)) {
     cleanObj = unsanitized.map((item) =>
-      sanitizeHtml(item, { allowedTags: [] }).trim()
+      sanitizeHtml(item, { allowedTags: [] }).trim(),
     );
   }
   if (
-    typeof unsanitized === "object" &&
+    typeof unsanitized === 'object' &&
     unsanitized !== null &&
     !Array.isArray(unsanitized)
   ) {
@@ -32,8 +32,8 @@ export const sanitize = (unsanitized: object | string, exclude: string[]) => {
       ) {
         const convertedToNumber = Number(unsanitized[prop]);
 
-        if (isNaN(convertedToNumber)) {
-          if (typeof prop === "string") {
+        if (Number.isNaN(convertedToNumber)) {
+          if (typeof prop === 'string') {
             cleanObj[prop] = sanitizeHtml(unsanitized[prop], {
               allowedTags: [],
             }).trim();
@@ -52,10 +52,9 @@ export const sanitizeQueryArray = (unsanitized: any) => {
   try {
     const stringied = String(unsanitized);
     if (stringied) {
-      return sanitize(stringied.split(","), []);
-    } else {
-      return [];
+      return sanitize(stringied.split(','), []);
     }
+    return [];
   } catch (e) {
     return [];
   }

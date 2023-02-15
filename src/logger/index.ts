@@ -9,7 +9,6 @@ export const error = (err: Error): void => {
     message: err.message,
     stack: err.stack,
   };
-  console.log('BIG ERRRRRROOOOOOOOORR');
   console.log(`[${chalk.red('ERROR')}] > ${errorLog}`);
 };
 

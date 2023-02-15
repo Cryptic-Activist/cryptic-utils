@@ -1,18 +1,16 @@
-import path from 'path';
-import fs from 'fs';
 import crypto from 'crypto';
+import fs from 'fs';
+import path from 'path';
 
 export const setupEnvironment = () => {
   const envMain = [];
   const envMainPort = [];
-  let userApi = null;
 
   const rootRepoFolder = path
     .dirname(__dirname)
     .split(path.sep)
     .slice(0, 6)
     .join('/');
-
 
   const repos = fs
     .readdirSync(rootRepoFolder)

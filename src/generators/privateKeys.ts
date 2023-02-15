@@ -1,20 +1,19 @@
-import { getUser } from 'cryptic-base';
+import { getUser } from 'base-ca';
 import bcrypt from 'bcryptjs';
 import { generateMnemonic } from 'bip39';
 import { generateRandomAdjective } from './string';
 
-export async function encryptPrivateKey(key: string): Promise<string> {
+export const encryptPrivateKey = async (key: string): Promise<string> => {
   const genSalt = await bcrypt.genSalt(10);
-
   const hashed = await bcrypt.hash(key, genSalt);
 
   return hashed;
-}
+};
 
-export async function generatePrivateKeys(): Promise<{
+export const generatePrivateKeys = async (): Promise<{
   privateKeys: string[];
   encryptedPrivateKeys: string[];
-}> {
+}> => {
   let encryptedPrivateKeysArr: null | string[];
   let privateKeysArr: null | string[];
   let userObj: any;
@@ -34,14 +33,14 @@ export async function generatePrivateKeys(): Promise<{
       encryptedPrivateKeysArr.push(encrypted);
     }
 
-    userObj = await getUser({ private_keys: encryptedPrivateKeysArr }, []);
+    userObj = await getUser({ privateKeys: encryptedPrivateKeysArr }, {});
   } while (userObj);
 
   return {
     privateKeys: privateKeysArr,
     encryptedPrivateKeys: encryptedPrivateKeysArr,
   };
-}
+};
 
 export const generatePrivateKeysBip39 = async () => {
   const mnemonicArr: string[] = generateMnemonic().split(' ');

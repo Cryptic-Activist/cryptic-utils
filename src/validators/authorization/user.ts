@@ -19,7 +19,7 @@ export const validateAuthorization = (authorization?: string) => {
     return { errors: validatedArray.error };
   }
 
-  if (authorizationArray[0] === 'Bearer') {
+  if (authorizationArray[0] !== 'Bearer') {
     return { errors: ['Token format is invalid'] };
   }
 

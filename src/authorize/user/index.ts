@@ -2,8 +2,12 @@ import { getUser } from 'base-ca';
 
 import { decodeToken } from '../../generators';
 import { validateAuthorization } from '../../validators';
+import { AuthorizeUser } from './type';
 
-export const authorizeUser = async (secret: string, authorization?: string) => {
+export const authorizeUser = async (
+  secret: string,
+  authorization?: string,
+): AuthorizeUser => {
   const validated = validateAuthorization(authorization);
 
   if (!validated.success) {

@@ -1,11 +1,11 @@
+import crypto from 'crypto';
+import slugify from 'slugify';
 import {
-  uniqueNamesGenerator,
   adjectives,
   animals,
   Config,
+  uniqueNamesGenerator,
 } from 'unique-names-generator';
-import slugify from 'slugify';
-import crypto from 'crypto';
 
 export function generateRandomNames(): string[] {
   const customConfig: Config = {
@@ -18,10 +18,11 @@ export function generateRandomNames(): string[] {
   const names = shortName
     .split(' ')
     .map(
-      (name: string) => `${name.substring(0, 1).toUpperCase()}${name.substring(
-        1,
-        name.length,
-      )}`,
+      (name: string) =>
+        `${name.substring(0, 1).toUpperCase()}${name.substring(
+          1,
+          name.length,
+        )}`,
     );
 
   return names;

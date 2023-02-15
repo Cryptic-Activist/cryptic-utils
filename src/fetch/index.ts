@@ -1,49 +1,28 @@
-import fetch from 'node-fetch';
+import axios, { type AxiosRequestHeaders } from 'axios';
 
-export async function fetcher(
+export const fetchGet = async (
   endpoint: string,
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE',
-  body?: object,
-): Promise<any> {
-  const response = await fetch(
-    endpoint,
-    {
-      method,
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body,
-    },
-  );
+  headers?: AxiosRequestHeaders | any,
+) => {
+  const response = await axios.get(endpoint, { headers });
+  return response;
+};
 
-  const data = await response.json();
-  return data;
-}
-
-export async function fetcherAuth(
+export const fetchPost = async (
   endpoint: string,
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE',
-  authorization: string,
   body?: object,
-): Promise<any> {
-  const response = await fetch(
-    endpoint,
-    {
-      method,
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: authorization,
-      },
-      body,
-    },
-  );
+  headers?: AxiosRequestHeaders | any,
+) => {
+  const response = await axios.post(endpoint, body, { headers });
+  return response;
+};
 
-  const data = await response.json();
-  return data;
-}
+export const fetchPut = async (endpoint: string, params: object) => {
+  const response = await axios.put(endpoint, params);
+  return response;
+};
+
+export const fetchDelete = async (endpoint: string, params: object) => {
+  const response = await axios.delete(endpoint, params);
+  return response;
+};
