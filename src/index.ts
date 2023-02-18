@@ -1,6 +1,7 @@
 export * from './authorize';
 export * from './checkers';
 export * from './constants';
+export * from './converter';
 export * from './fetch';
 export * from './generators';
 export * from './logger';
