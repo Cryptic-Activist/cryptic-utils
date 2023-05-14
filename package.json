@@ -1,6 +1,6 @@
 {
   "name": "cryptic-utils",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Utils for Cryptic Activist APIs",
   "author": "Davi Silva <davi.cunha.silva.ca@gmail.com>",
   "main": "dist/index.js",
@@ -19,7 +19,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=development jest",
     "dev": "nodemon src/index.ts",
-    "build": "rm -rf dist/ && tsc",
+    "build": "tsup src",
     "refresh": "rm -rf ./node_modules ./yarn.lock ./yarn-error.log && yarn install",
     "migrate": "yarn sequelize db:migrate"
   },
@@ -53,6 +53,8 @@
     "prettier": "^2.2.1",
     "ts-node-dev": "^1.1.1",
     "tsconfig-paths": "^3.9.0",
+    "tsup": "^6.7.0",
+    "tsx": "^3.12.7",
     "typescript": "^4.4.3"
   },
   "dependencies": {
