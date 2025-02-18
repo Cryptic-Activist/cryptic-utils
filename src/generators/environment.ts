@@ -39,7 +39,7 @@ export const setupEnvironment = () => {
       const jwtSecret1 = crypto.randomBytes(32).toString('hex');
       const jwtSecret2 = crypto.randomBytes(32).toString('hex');
 
-      const appNameEnv = [appName.toUpperCase(), '_API_ENDPOINT'].join('');
+      const appNameEnv = [appName.toUpperCase(), '_API'].join('');
       // @ts-ignore
       envMain.push(appNameEnv);
       // @ts-ignore
@@ -66,7 +66,7 @@ SEQUELIZE_HOST=localhost
 JWT_SECRET=${jwtSecret1}
 JWT_REFRESH_SECRET=${jwtSecret2}
 
-USER_API_ENDPOINT=http://localhost:500${userApiIndex}
+USER_API=http://localhost:500${userApiIndex}
 
 PORT=${port}
 
